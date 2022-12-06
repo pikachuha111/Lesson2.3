@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Main Suite" parallel="methods" thread-count="2">
+    <test name="Somke">
+        <classes>
+            <class name="tests.CalculatorTest"/>
+            <class name="tests.PriorityTest"/>
+        </classes>
+    </test>
+    <test name = "Regression tests">
+        <classes>
+            <class name="tests.DependencyTest"/>
+        </classes>
+    </test>
+</suite>

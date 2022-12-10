@@ -39,10 +39,10 @@ public class AdditionalHW {
         driver.findElement(By.id("wd_lam_id")).sendKeys("200");
 
         driver.findElement(By.id("direction-laminate-id1")).click();
-        driver.findElement(By.partialLinkText("Рассчитать")).click();
+        driver.findElement(By.partialLinkText("ГђГ Г±Г±Г·ГЁГІГ ГІГј")).click();
         Thread.sleep(3000);
-        Assert.assertEquals(driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div[1]/div[3]/article/section/div[2]/div[3]/div[2]/div[1]")).getText(), "Требуемое количество досок ламината: 53");
-        Assert.assertEquals(driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div[1]/div[3]/article/section/div[2]/div[3]/div[2]/div[2]")).getText(), "Количество упаковок ламината: 7");
+        Assert.assertEquals(driver.findElement(By.xpath("//div[contains(text(), 'РўСЂРµР±СѓРµРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґРѕСЃРѕРє')]")).getText(), "Г’Г°ГҐГЎГіГҐГ¬Г®ГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г¤Г®Г±Г®ГЄ Г«Г Г¬ГЁГ­Г ГІГ : 53");
+        Assert.assertEquals(driver.findElement(By.xpath("//div[contains(text(), 'РљРѕР»РёС‡РµСЃС‚РІРѕ СѓРїР°РєРѕРІРѕРє')]")).getText(), "ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГіГЇГ ГЄГ®ГўГ®ГЄ Г«Г Г¬ГЁГ­Г ГІГ : 7");
         Thread.sleep(3000);
 
     }

@@ -27,12 +27,14 @@ public class CheckOutSteps extends BaseStep {
        checkOutYourInformationPage.getPostalCodeFieldLocator().sendKeys(postCode);
     }
 
-    public void pressContinueButton() {
+    public CheckOutOverviewPage pressContinueButton() {
         checkOutYourInformationPage.getContinueButtonLocator().click();
+        return new CheckOutOverviewPage(driver);
     }
 
-    public void pressFinishButton() {
+    public CheckOutCompletePage pressFinishButton() {
         checkOutOverviewPage.getFinishButtonLocator().click();
+        return new CheckOutCompletePage(driver);
     }
 
     public ProductPage pressBackToHomeButton() {

@@ -55,7 +55,7 @@ public class WaitsService {
 
     public boolean isFileExist(String filePath) throws InterruptedException {
 
-        File file = new File(filePath);
+        File file = new File(filePath); //реализовать через fluentWait т.к. все зависит от скорости инета. А через флюент мы будем проверять, пока файл точно не появится в ситеме!
         int attempts = 0;
         while (!file.exists() && attempts < 4) {
             Thread.sleep(1000);

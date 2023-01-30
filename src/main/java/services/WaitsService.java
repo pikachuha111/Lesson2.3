@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.List;
 
@@ -50,5 +51,23 @@ public class WaitsService {
                 .ignoring(NoSuchElementException.class);
 
         fluent.until(driver -> driver.findElement(by));
+    }
+
+    public boolean isFileExist(String filePath) throws InterruptedException {
+
+        File file = new File(filePath);
+        int attempts = 0;
+        while (!file.exists() && attempts < 4) {
+            Thread.sleep(1000);
+            attempts++;
+        }
+
+        if (attempts == 4 && !file.exists()) {
+            file.delete();
+            return false;
+        } else {
+            file.delete();
+            return true;
+        }
     }
 }

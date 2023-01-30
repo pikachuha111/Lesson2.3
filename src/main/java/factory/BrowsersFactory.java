@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
+import java.util.HashMap;
 
 public class BrowsersFactory {
     private WebDriver driver = null;
@@ -26,6 +27,11 @@ public class BrowsersFactory {
                 chromeOptions.addArguments("--ignore-certificate-errors");
                 chromeOptions.addArguments("--silent");
                 chromeOptions.addArguments("--start-maximized");
+
+                HashMap<String, Object> chromePrefs = new HashMap<>();
+                chromePrefs.put("profile.default_content_settings.popups", 0);
+                chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
+                chromeOptions.setExperimentalOption("prefs", chromePrefs);
 
                 driver = new ChromeDriver(chromeOptions);
 

@@ -1,6 +1,6 @@
 package tests;
 
-import Configuration.ReadProperties;
+import configuration.ReadProperties;
 import baseEntities.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;

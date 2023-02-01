@@ -3,17 +3,16 @@
 <suite name="Main Suite">
     <test name="Somke">
         <classes>
-            <class name="tests.CalculatorTest">
+            <class name="tests.AlertTest">
                 <methods>
                     <include name="testSum"/>
                 </methods>
             </class>
-            <class name="tests.PriorityTest"/>
         </classes>
     </test>
     <test name = "Regression tests">
         <classes>
-            <class name="tests.DependencyTest"/>
+            <class name="tests.FrameTest"/>
         </classes>
     </test>
 </suite>

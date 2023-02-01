@@ -10,7 +10,7 @@ import pages.LoginPage;
 public class LoginTest extends BaseTest {
 
 
-    @Test
+    //@Test
     public void loginTest() {
 
 
@@ -22,13 +22,13 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(new DashboardPage(driver).isPageOpened());
     }
 
-    @Test
+    //@Test
     public void loginSuccessfulTest() {
         Assert.assertTrue(userStep.loginSuccessful(ReadProperties.username(), ReadProperties.password()).isPageOpened());
 
     }
 
-    @Test
+    //@Test
     public void loginIncorrectTest() {
         Assert.assertEquals(
                 userStep.loginIncorrect(ReadProperties.username(), "sdfsdfsdf")

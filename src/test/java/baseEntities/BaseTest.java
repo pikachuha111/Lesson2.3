@@ -11,6 +11,7 @@ import org.testng.annotations.Listeners;
 import services.WaitsService;
 import steps.UserStep;
 import utils.InvokedListener;
+import steps.ProjectSteps;
 
 @Listeners(InvokedListener.class)
 public class BaseTest {
@@ -18,6 +19,7 @@ public class BaseTest {
     protected WebDriver driver;
     protected UserStep userStep;
     protected WaitsService waitsService;
+    protected ProjectSteps projectSteps;
 
     @BeforeMethod
     public void setUp(ITestContext iTestContext){
@@ -28,6 +30,7 @@ public class BaseTest {
         iTestContext.setAttribute("driver",driver);
 
         userStep = new UserStep(driver);
+        projectSteps = new ProjectSteps(driver);
     }
 
     @AfterMethod

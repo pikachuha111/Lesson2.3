@@ -12,9 +12,8 @@ public class RadioButton {
     private List<String> valueList;
     private List<String> textList;
 
-    //Продумать механизм поиска этого элемента
-    //Добавить методы для работы с ним
-    //Проверить что поиск и методы работают на всех похожих элементах сайта
+    // РџСЂРѕРґСѓРјР°С‚СЊ РјРµС…Р°РЅРёР·Рј РїРѕРёСЃРєР° СЌС‚РѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+    // РїРѕРёСЃРє РїРѕ name
 
     public RadioButton(WebDriver driver, String attributeNameValue) {
         uiElementList = new ArrayList<>();
@@ -28,6 +27,10 @@ public class RadioButton {
             textList.add(element.findUIElement(By.xpath("parent::*/strong")).getText().trim());
         }
     }
+     // Р”РѕР±Р°РІРёС‚СЊ РјРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РЅРёРј
+    // selectByValue
+    // selectByText
+    // selectByIndex
 
     public void selectByIndex(int index) {
         uiElementList.get(index).click();

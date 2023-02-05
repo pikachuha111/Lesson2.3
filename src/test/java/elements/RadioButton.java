@@ -12,10 +12,6 @@ public class RadioButton {
     private List<String> valueList;
     private List<String> textList;
 
-    //Продумать механизм поиска этого элемента
-    //Добавить методы для работы с ним
-    //Проверить что поиск и методы работают на всех похожих элементах сайта
-
     public RadioButton(WebDriver driver, String attributeNameValue) {
         uiElementList = new ArrayList<>();
         valueList = new ArrayList<>();

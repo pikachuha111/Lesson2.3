@@ -16,7 +16,7 @@ public class UIElement implements WebElement {
         this.driver = driver;
         this.by = by;
         this.waitsService = new WaitsService(driver);
-        webElement = waitsService.waitForExists(by);
+        this.webElement = waitsService.waitForExists(by);
     }
 
     public UIElement(WebDriver driver, WebElement webElement) {

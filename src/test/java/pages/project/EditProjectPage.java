@@ -26,7 +26,7 @@ public class EditProjectPage extends BasePage {
         return null;
     }
 
-    public CheckBox getType() {
-        return new CheckBox(driver, "//*[@class = 'checkbox']//strong/following-sibling::input");
+    public CheckBox getType(String elementName) {
+        return new CheckBox(driver, By.name(elementName));
     }
 }

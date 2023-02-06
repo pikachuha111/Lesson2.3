@@ -13,9 +13,11 @@ public class CheckBoxTest extends BaseTest {
     public void checkBoxTest() throws InterruptedException {
         userStep.loginSuccessful(ReadProperties.username(), ReadProperties.password());
         EditProjectPage page = new NavigationSteps(driver).navigateToEditProjectPage("1");
-        page.getType().setFlagByText("Show the announcement on the overview page");
-        page.getType().unSetFlagById("show_announcement");
-        Assert.assertFalse(page.getType().isCheckBoxSelectedById("show_announcement"));
+        page.getType("show_announcement").setFlag();
+        page.getType("show_announcement").removeFlag();
+
+        Assert.assertFalse(page.getType("show_announcement").isSelected());
+
         Thread.sleep(2000);
     }
 }

@@ -14,9 +14,7 @@ public class ProductSteps extends BaseStep {
         productPage = new ProductPage(driver);
     }
 
-//    public void addToCartaddToCartSauceLabsOnesieItem () {
-//        productPage.getAddToCartSauceLabsOnesieElement().click();
-//    }
+
 
     public void addItem(Item item){
         productPage.getItemElement(item).click();

@@ -12,7 +12,6 @@ public class ProductPage extends BasePage {
 
     @FindBy(xpath = "//div[@class = 'peek']")
     WebElement iconProductLocator;
-    private final By addToCartSauceLabsOnesieLocator = By.id ("add-to-cart-sauce-labs-onesie");
 
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -21,10 +20,6 @@ public class ProductPage extends BasePage {
     @Override
     protected WebElement getPageIdentifier() {
         return iconProductLocator;
-    }
-
-    public void openPageByUrl() {
-        super.openPageByUrl(pagePath);
     }
 
     public WebElement getItemElement(Item item) {

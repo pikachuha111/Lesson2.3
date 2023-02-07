@@ -4,6 +4,7 @@ import configuration.ReadProperties;
 import baseEntities.BaseTest;
 import io.qameta.allure.*;
 import models.Project;
+import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -37,7 +38,11 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
 
     public void loginSuccessfulTest() {
-        Assert.assertTrue(userStep.loginSuccessful(ReadProperties.username(), ReadProperties.password())
+        User user = new User.Builder()
+                .withEmail(ReadProperties.username())
+                .withPassword(ReadProperties.password())
+                .build();
+        Assert.assertTrue(userStep.loginSuccessful(user)
                 .isPageOpened()
         );
 

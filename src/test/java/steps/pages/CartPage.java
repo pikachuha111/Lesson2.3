@@ -4,19 +4,23 @@ import baseEntities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class CartPage extends BasePage {
     private  final static String pagePath = "cart.html";
 
-    private final By checkOutButtonLocator = By.id("checkout");
+    @FindBy(id="checkout")
+    WebElement checkOutButtonLocator;
+    @FindBy(className="inventory_item_name")
+    WebElement addedItemLocator;
 
     public CartPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    protected By getPageIdentifier() {
-        return checkOutButtonLocator;
+    protected WebElement getPageIdentifier() {
+        return  checkOutButtonLocator;
     }
 
     public void openPageByUrl() {
@@ -24,6 +28,10 @@ public class CartPage extends BasePage {
     }
 
     public WebElement getCheckOutButton() {
-        return driver.findElement(checkOutButtonLocator);
+        return checkOutButtonLocator;
+    }
+
+    public String getAddedItemLocator() {
+        return addedItemLocator.getText().trim();
     }
 }

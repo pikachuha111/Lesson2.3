@@ -17,4 +17,8 @@ public class CartSteps extends BaseStep {
         cartPage.getCheckOutButton().click();
     }
 
+    public String getTextItem() {
+        return  cartPage.getAddedItemLocator();
+    }
+
 }

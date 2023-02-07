@@ -1,14 +1,17 @@
 package steps.pages;
 
 import baseEntities.BasePage;
+import models.Item;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class ProductPage extends BasePage {
     private  final static String pagePath = "inventory.html";
 
-    private final By iconProductLocator = By.xpath("//div[@class = 'peek']");
+    @FindBy(xpath = "//div[@class = 'peek']")
+    WebElement iconProductLocator;
     private final By addToCartSauceLabsOnesieLocator = By.id ("add-to-cart-sauce-labs-onesie");
 
     public ProductPage(WebDriver driver) {
@@ -16,7 +19,7 @@ public class ProductPage extends BasePage {
     }
 
     @Override
-    protected By getPageIdentifier() {
+    protected WebElement getPageIdentifier() {
         return iconProductLocator;
     }
 
@@ -24,7 +27,7 @@ public class ProductPage extends BasePage {
         super.openPageByUrl(pagePath);
     }
 
-    public WebElement getAddToCartSauceLabsOnesieElement() {
-        return driver.findElement(addToCartSauceLabsOnesieLocator);
+    public WebElement getItemElement(Item item) {
+        return driver.findElement(By.id(item.getLocatorValue()));
     }
 }

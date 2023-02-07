@@ -19,13 +19,19 @@ public class CheckBox {
     }
 
     public void setFlag() {
-        if (!uiElement.isSelected()) {
-            uiElement.click();
-        }
+        click(true);
     }
 
     public void removeFlag() {
-        if (uiElement.isSelected()) {
+        click(false);
+    }
+
+    public boolean isUiElementSelected() {
+      return uiElement.isSelected();
+    }
+
+    public void click(boolean value) {
+        if (value != isSelected()){
             uiElement.click();
         }
     }

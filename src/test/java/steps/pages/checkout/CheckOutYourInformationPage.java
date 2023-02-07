@@ -1,4 +1,4 @@
-package pages.checkout;
+package steps.pages.checkout;
 
 import baseEntities.BasePage;
 import org.openqa.selenium.By;

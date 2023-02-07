@@ -2,7 +2,7 @@ package steps;
 
 import baseEntities.BaseStep;
 import org.openqa.selenium.WebDriver;
-import pages.CartPage;
+import steps.pages.CartPage;
 
 public class CartSteps extends BaseStep {
 

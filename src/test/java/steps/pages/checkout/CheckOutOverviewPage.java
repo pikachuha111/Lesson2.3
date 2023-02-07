@@ -1,4 +1,4 @@
-package pages.checkout;
+package steps.pages.checkout;
 
 import baseEntities.BasePage;
 import org.openqa.selenium.By;
@@ -22,7 +22,4 @@ public class CheckOutOverviewPage extends BasePage {
         return driver.findElement(finishButtonLocator);
     }
 
-    //    public void openPageByUrl() {
-//        super.openPageByUrl(pagePath);
-//    }
 }

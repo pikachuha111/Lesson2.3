@@ -1,4 +1,4 @@
-package pages.checkout;
+package steps.pages.checkout;
 
 import baseEntities.BasePage;
 import org.openqa.selenium.By;
@@ -23,9 +23,5 @@ public class CheckOutCompletePage extends BasePage {
     public WebElement getBackHomeButtonLocator() {
         return driver.findElement(backHomeButtonLocator);
     }
-
-    //    public void openPageByUrl() {
-//        super.openPageByUrl(pagePath);
-//    }
 
 }

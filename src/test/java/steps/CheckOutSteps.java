@@ -2,10 +2,10 @@ package steps;
 
 import baseEntities.BaseStep;
 import org.openqa.selenium.WebDriver;
-import pages.ProductPage;
-import pages.checkout.CheckOutCompletePage;
-import pages.checkout.CheckOutOverviewPage;
-import pages.checkout.CheckOutYourInformationPage;
+import steps.pages.ProductPage;
+import steps.pages.checkout.CheckOutCompletePage;
+import steps.pages.checkout.CheckOutOverviewPage;
+import steps.pages.checkout.CheckOutYourInformationPage;
 
 public class CheckOutSteps extends BaseStep {
 

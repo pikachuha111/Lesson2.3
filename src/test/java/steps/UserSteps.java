@@ -2,8 +2,10 @@ package steps;
 
 import Configuration.ReadProperties;
 import baseEntities.BaseStep;
+import models.User;
 import org.openqa.selenium.WebDriver;
-import pages.LoginPage;
+import steps.pages.LoginPage;
+import steps.pages.ProductPage;
 
 public class UserSteps extends BaseStep {
     private LoginPage loginPage;
@@ -14,10 +16,20 @@ public class UserSteps extends BaseStep {
         loginPage = new LoginPage(driver);
     }
 
-    public void logIn() {
-        loginPage.getEmailInput().sendKeys(readProperties.username());
-        loginPage.getPasswordInput().sendKeys(readProperties.password());
+    public void login(String email, String psw) {
+        loginPage.getEmailInput().sendKeys(email);
+        loginPage.getPasswordInput().sendKeys(psw);
         loginPage.getLogInButton().click();
+    }
+
+    public ProductPage loginSuccessful(User user) {
+        return loginSuccessful(user.getUsername(), user.getPassword());
+    }
+
+    private ProductPage loginSuccessful(String email, String password) {
+        login(email, password);
+
+        return new ProductPage(driver);
     }
 
 }

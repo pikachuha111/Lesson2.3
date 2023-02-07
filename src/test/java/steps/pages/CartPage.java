@@ -1,4 +1,4 @@
-package pages;
+package steps.pages;
 
 import baseEntities.BasePage;
 import org.openqa.selenium.By;

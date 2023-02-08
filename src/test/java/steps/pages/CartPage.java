@@ -1,12 +1,15 @@
 package steps.pages;
 
 import baseEntities.BasePage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CartPage extends BasePage {
+    private Logger logger = LogManager.getLogger();
     private  final static String pagePath = "cart.html";
 
     @FindBy(id="checkout")
@@ -16,6 +19,7 @@ public class CartPage extends BasePage {
 
     public CartPage(WebDriver driver) {
         super(driver);
+        logger.info("Page Factory has been implemented in the class CartPage");
     }
 
     @Override

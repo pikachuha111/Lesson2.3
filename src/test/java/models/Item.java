@@ -2,9 +2,7 @@ package models;
 
 import lombok.*;
 
-@Getter
-@Setter
-@ToString
+@Data
 @EqualsAndHashCode
 @NoArgsConstructor
 public class Item {

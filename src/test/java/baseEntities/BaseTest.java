@@ -14,7 +14,6 @@ public class BaseTest {
     protected ProductSteps productSteps;
     protected NavigationSteps navigationSteps;
     protected CartSteps cartSteps;
-    protected CheckOutSteps checkOutSteps;
 
     @BeforeMethod
     public void setUp(){
@@ -25,7 +24,6 @@ public class BaseTest {
         productSteps = new ProductSteps(driver);
         navigationSteps = new NavigationSteps(driver);
         cartSteps = new CartSteps(driver);
-        checkOutSteps = new CheckOutSteps(driver);
     }
 
     @AfterMethod

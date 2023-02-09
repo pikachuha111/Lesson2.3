@@ -22,6 +22,7 @@ public class MilestoneTest {
 
         System.out.println(milestone1.toString());
         System.out.println(milestone2.toString());
+//        System.out.println();
 
         Assert.assertTrue(milestone1.equals(milestone2));
 

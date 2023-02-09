@@ -17,10 +17,9 @@
     <Loggers>
         <Logger name="File"
                 level="INFO" additivity="false">
-            <AppenderRef ref="File" />
+            <AppenderRef ref="File"/>
         </Logger>
-        <Root level="TRACE">
-            <!--AppenderRef ref="ConsoleAppender"/-->
+        <Root level="ERROR">
             <AppenderRef ref="ConsoleAppender"/>
         </Root>
     </Loggers>

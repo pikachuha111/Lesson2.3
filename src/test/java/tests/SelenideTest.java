@@ -3,6 +3,7 @@ package tests;
 import baseEntities.BaseTest;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
 import configuration.ReadProperties;
 import org.openqa.selenium.By;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.withText;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SelenideTest extends BaseTest {
@@ -22,12 +23,14 @@ public class SelenideTest extends BaseTest {
 
         $(By.id("name")).setValue(ReadProperties.username());
         $("#password").setValue(ReadProperties.password());
+        $("#password").val(ReadProperties.password());
 
         SelenideElement loginButton = $("#button_primary");
         loginButton
                 .should(exist)
                 .shouldBe(enabled)
                 .click();
+//        loginButton.selectOption(s);
 
 //        $(withText("All Projects"))
 //                .shouldBe(visible)
@@ -37,10 +40,20 @@ public class SelenideTest extends BaseTest {
                 .shouldBe(visible)
                 .shouldHave(text("All Projects"));
 
-//        $$(withText("All Projects"))
-//                .shouldBe(empty)
-//                .shouldBe(size(10))
-//                .texts();
+        $$(withText("All Projects"))
+                .shouldBe(empty)
+                .shouldBe(size(10))
+                .shouldHave(texts("Text1",
+                        "Text2",
+                        "Text3"));
+
+
+        $$(withText("All Projects"))
+                .filterBy(text("Expected Text"))
+                .excludeWith(hidden)
+                .findBy()
+
+
 
     }
 
@@ -60,6 +73,24 @@ public class SelenideTest extends BaseTest {
         $(By.xpath("//div[contains(text(), 'All Projects')]"))
                 .shouldBe(visible)
                 .shouldHave(text("All Projects"));
+
+        $(withText("All Projects"))
+                .shouldBe(visible)
+                .shouldHave(text("All Projects"));
+
+        $(byText("All Projects"))
+                .shouldBe(visible)
+                .shouldHave(text("All Projects"));
+
+        $(byTitle("All Projects"))
+                .shouldBe(visible)
+                .shouldHave(text("All Projects"));
+
+        $(byValue("All Projects"))
+                .shouldBe(visible)
+                .shouldHave(text("All Projects"));
+
+
 
     }
 

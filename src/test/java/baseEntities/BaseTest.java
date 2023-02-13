@@ -1,7 +1,7 @@
 package baseEntities;
 
 import configuration.ReadProperties;
-import factory.BrowsersFactory;
+import factory.BrowserFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -23,7 +23,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp(ITestContext iTestContext){
-        driver = new BrowsersFactory().getDriver();
+        driver = new BrowserFactory().getDriver();
         waitsService = new WaitsService(driver);
         driver.get(ReadProperties.getUrl());
 

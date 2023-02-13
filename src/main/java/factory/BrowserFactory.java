@@ -10,10 +10,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
-public class BrowsersFactory {
+public class BrowserFactory {
     private WebDriver driver = null;
 
-    public BrowsersFactory() {
+    public BrowserFactory() {
         switch (ReadProperties.browserName().toLowerCase()) {
             case "chrome":
                 DriverManagerType driverManagerType = DriverManagerType.CHROME;

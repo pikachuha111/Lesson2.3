@@ -1,22 +1,26 @@
 package stepDefs;
 
+import baseEntities.BaseCucumberTest;
 import configuration.ReadProperties;
 import factory.BrowserFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.DashboardPage;
 import pages.LoginPage;
 import steps.UserStep;
 
-public class FirstStepDefs {
-    private WebDriver driver;
+public class FirstStepDefs extends BaseCucumberTest{
+    private BaseCucumberTest baseCucumberTest;
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
 
-    @Given("open browser")
+    public FirstStepDefs(BaseCucumberTest baseCucumberTest){
+        this.baseCucumberTest = baseCucumberTest;
+    }
+
+    @Given("browser is open")
     public void startBrowser() {
         driver = new BrowserFactory().getDriver();
     }

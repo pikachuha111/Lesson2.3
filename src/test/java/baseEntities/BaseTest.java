@@ -1,52 +1,47 @@
 package baseEntities;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import configuration.ReadProperties;
-import factory.BrowserFactory;
-import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
-import services.WaitsService;
-import steps.UserStep;
-import utils.InvokedListener;
-import steps.ProjectSteps;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.testng.annotations.*;
+import steps.*;
 
-@Listeners(InvokedListener.class)
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+
+
 public class BaseTest {
 
-    protected WebDriver driver;
-    protected UserStep userStep;
-    protected WaitsService waitsService;
-    protected ProjectSteps projectSteps;
+    protected NavigationSteps navigationSteps;
+    protected CartSteps cartSteps;
+    protected UserSteps userSteps;
+    protected ProductSteps productSteps;
+    protected CheckOutSteps checkOutSteps;
 
-    @BeforeMethod
-    public void setUp(ITestContext iTestContext){
-        driver = new BrowserFactory().getDriver();
-        waitsService = new WaitsService(driver);
-        driver.get(ReadProperties.getUrl());
+    @BeforeSuite
+    public void setUp() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        iTestContext.setAttribute("driver",driver);
+        Configuration.browser = ReadProperties.browserName();
+        Configuration.baseUrl = ReadProperties.getUrl();
+        Configuration.timeout = 5000;
+        Configuration.fastSetValue = false;
 
-        userStep = new UserStep(driver);
-        projectSteps = new ProjectSteps(driver);
     }
+
+    @BeforeGroups("End2EndCase")
+    public void objectInitialization() {
+        navigationSteps = new NavigationSteps();
+        cartSteps = new CartSteps();
+        userSteps = new UserSteps();
+        productSteps = new ProductSteps();
+        checkOutSteps = new CheckOutSteps();
+    }
+
+
 
     @AfterMethod
-    public void tearDown(ITestResult iTestResult) {
-        // Solution - 2: Плохое решение - потому, что Screenshot добавляется в шаг TearDown
-        /*
-        if (testResult.getStatus() == ITestResult.FAILURE) {
-            try {
-                byte[] srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-                saveScreenshot(srcFile);
-            } catch (NoSuchSessionException ex) {
-
-            }
-        }
-        */
-        driver.quit();
+    public void tearDown() {
+        closeWebDriver();
     }
-
 }

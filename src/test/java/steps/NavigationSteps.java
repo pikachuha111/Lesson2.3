@@ -1,17 +1,16 @@
 package steps;
 
-import baseEntities.BaseStep;
-import org.openqa.selenium.WebDriver;
-import pages.project.AddProjectPage;
+import lombok.Data;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import pages.CartPage;
 
-public class NavigationSteps extends BaseStep {
-    public NavigationSteps(WebDriver driver) {
-        super(driver);
-    }
+@Data
+public class NavigationSteps {
+    private Logger logger = LogManager.getLogger();
+    private CartPage page = new CartPage();
 
-    public AddProjectPage navigateToAddProjectPage() {
-
-        AddProjectPage page = new AddProjectPage(driver);
+    public CartPage navigateToCartPage() {
         page.openPageByUrl();
 
         return page;

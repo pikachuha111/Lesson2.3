@@ -1,31 +1,34 @@
 package stepDefs;
 
-import baseEntities.BaseCucumberTest;
-import factory.BrowserFactory;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import configuration.ReadProperties;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.qameta.allure.selenide.AllureSelenide;
 
-public class Hook extends BaseCucumberTest {
-    private BaseCucumberTest baseCucumberTest;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 
-    public Hook (BaseCucumberTest baseCucumberTest) {
-        this.baseCucumberTest = baseCucumberTest;
-    }
+public class Hook {
+
 
     @Before
     public void initScenario(Scenario scenario) {
-        System.out.println("HOOK: start browser");
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        baseCucumberTest.driver = new BrowserFactory().getDriver();
+        Configuration.browser = ReadProperties.browserName();
+        Configuration.baseUrl = ReadProperties.getUrl();
+        Configuration.timeout = 5000;
+        Configuration.fastSetValue = false;
+
+        System.out.println("HOOK: start browser");
 
     }
 
     @After
     public void completeScenario(Scenario scenario){
-        if (baseCucumberTest.driver != null) {
-            baseCucumberTest.driver.quit();
-        }
+        closeWebDriver();
     }
 
 }

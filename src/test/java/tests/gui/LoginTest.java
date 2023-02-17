@@ -1,17 +1,12 @@
-package tests;
+package tests.gui;
 
 import configuration.ReadProperties;
 import baseEntities.BaseTest;
 import io.qameta.allure.*;
-import models.Project;
-import models.User;
-import org.openqa.selenium.By;
+import models.UserGUI;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.DashboardPage;
-import pages.LoginPage;
 import steps.NavigationSteps;
-import steps.UserStep;
 import pages.project.AddProjectPage;
 
 public class LoginTest extends BaseTest {
@@ -26,7 +21,7 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
 
     public void loginSuccessfulTest() {
-        User user = new User.Builder()
+        UserGUI user = new UserGUI.Builder()
                 .withEmail(ReadProperties.username())
                 .withPassword(ReadProperties.password())
                 .build();

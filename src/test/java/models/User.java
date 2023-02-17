@@ -1,60 +1,42 @@
 package models;
 
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@Builder
+@EqualsAndHashCode
+@ToString
 public class User {
-    private String firstname;
-    private String lastname;
+    @Expose
+    private String name;
+
+    @EqualsAndHashCode.Exclude
+    private int id;
+
+    @Expose
     private String email;
+
     private String password;
 
-    public static class Builder {
-        private User newUser;
+    @Expose
+    @SerializedName(value = "is_active")
+    private boolean isActive;
 
-        public Builder() {
-            newUser = new User();
-        }
+    @Expose
+    @SerializedName(value = "is_admin")
+    private  boolean isAdmin;
 
-        public Builder withEmail(String value) {
-            newUser.email = value;
+    @Expose
+    @SerializedName(value = "role_id")
+    private int roleId;
 
-            return this;
-        }
+    @Expose
+    private String role;
 
-        public Builder withPassword(String value) {
-            newUser.password = value;
-
-            return this;
-        }
-
-        public Builder withFirstname(String value) {
-            newUser.firstname = value;
-
-            return this;
-        }
-
-        public Builder withLastname(String value) {
-            newUser.lastname = value;
-
-            return this;
-        }
-
-        public User build() {
-            return newUser;
-        }
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
+    @EqualsAndHashCode.Exclude
+    private String email_notification;
 }

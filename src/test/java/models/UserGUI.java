@@ -1,10 +1,15 @@
 package models;
 
+
+
+
+
 public class UserGUI {
     private String firstname;
     private String lastname;
     private String email;
     private String password;
+
 
     public static class Builder {
         private UserGUI newUser;

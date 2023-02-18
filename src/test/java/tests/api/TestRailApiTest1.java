@@ -1,5 +1,6 @@
 package tests.api;
 
+import adapters.ProjectAdapter;
 import baseEntities.BaseApiTest;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
@@ -91,6 +92,20 @@ public class TestRailApiTest1 extends BaseApiTest {
                 .log().body()
                 .statusCode(HttpStatus.SC_OK);
 
+    }
+
+    @Test
+    public void addProject3_1() {
+        ProjectAdapter projectAdapter = new ProjectAdapter();
+
+        Project expectedProject = new Project();
+        expectedProject.setName("WP_Project_01");
+        expectedProject.setAnnouncement("this is a description");
+        expectedProject.setType(1);
+        expectedProject.setShowAnnouncement(true);
+
+        Project actualProject = projectAdapter.add(expectedProject);
+        Assert.assertEquals(actualProject, expectedProject);
     }
 
     @Test

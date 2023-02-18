@@ -1,5 +1,6 @@
 package baseEntities;
 
+import adapters.BaseAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import configuration.ReadProperties;
@@ -10,16 +11,10 @@ import org.testng.annotations.BeforeTest;
 
 import static io.restassured.RestAssured.given;
 
-public class BaseApiGsonTest {
-    protected Gson gson;
+public class BaseApiGsonTest extends BaseAdapter {
 
     @BeforeTest
     public void setupApi() {
-        gson = new Gson();
-        gson = new GsonBuilder()
-                .excludeFieldsWithoutExposeAnnotation()
-                .create();
-
         RestAssured.baseURI = ReadProperties.getUrl();
 
         RestAssured.requestSpecification = given()

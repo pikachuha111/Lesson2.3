@@ -1,24 +1,49 @@
 package baseEntities;
 
-import adapters.BaseAdapter;
+import adapters.CaseAdapter;
+import adapters.MilestoneAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import configuration.ReadProperties;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import models.Case;
 import org.apache.http.protocol.HTTP;
+import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeTest;
 
 import static io.restassured.RestAssured.given;
 
-public class BaseApiGsonTest extends BaseAdapter {
+public class BaseApiGsonTest {
+    protected Gson gson;
+    protected MilestoneAdapter milestoneAdapter;
+    protected CaseAdapter caseAdapter;
+
 
     @BeforeTest
     public void setupApi() {
+
+        gson = new Gson();
+        gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
+
         RestAssured.baseURI = ReadProperties.getUrl();
 
         RestAssured.requestSpecification = given()
                 .auth().preemptive().basic(ReadProperties.username(), ReadProperties.password())
                 .header(HTTP.CONTENT_TYPE, ContentType.JSON);
+
+
+    }
+
+    @BeforeGroups("MileStone")
+    public void milestoneInitialization(){
+        milestoneAdapter = new MilestoneAdapter();
+    }
+
+    @BeforeGroups("Cases")
+    public void caseInitialization(){
+        caseAdapter = new CaseAdapter();
     }
 }

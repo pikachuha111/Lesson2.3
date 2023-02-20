@@ -1,19 +1,22 @@
 package models;
 
+import com.google.gson.annotations.Expose;
 import lombok.*;
 
+@Builder
 @Data
-@NoArgsConstructor
 public class Milestone {
-    @EqualsAndHashCode.Exclude
-    private int id;
 
-    @NonNull
+    private int id;
+    private int size;
+    @Expose
     private String name;
-    private String references;
+
+    @Expose
+    private int projectID;
+
+    @Expose
     private String description;
-    @ToString.Exclude
-    private boolean completed;
 
 
 }

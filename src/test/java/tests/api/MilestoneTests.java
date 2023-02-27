@@ -1,13 +1,13 @@
 package tests.api;
 
-import baseEntities.BaseApiGsonTest;
+import baseEntities.BaseApiTest;
 import models.Milestone;
 import org.testng.annotations.Test;
 
-public class MilestoneTests extends BaseApiGsonTest {
-    private Milestone testMilestone;
+public class MilestoneTests extends BaseApiTest {
+    private Milestone actualMilestone;
 
-    @Test(groups = "MileStone")
+    @Test
     public void addMilestone() {
         Milestone expectedMilestone = Milestone.builder()
                 .name("newName")
@@ -15,32 +15,28 @@ public class MilestoneTests extends BaseApiGsonTest {
                 .projectID(3)
                 .build();
 
-        testMilestone = milestoneAdapter.add(expectedMilestone);
-
+        actualMilestone = milestoneAdapter.add(actualProject, expectedMilestone);
     }
 
-    @Test(dependsOnMethods = "addMilestone",
-            groups = "MileStone")
+    @Test(dependsOnMethods = "addMilestone")
     public void getMilestone() {
-        milestoneAdapter.get(testMilestone);
+        milestoneAdapter.get(actualMilestone);
     }
 
-    @Test(dependsOnMethods = "addMilestone",
-            groups = "MileStone")
+    @Test(dependsOnMethods = "addMilestone")
     public void getMilestones() {
-        milestoneAdapter.getMilestones(3);
+        milestoneAdapter.getMilestones(actualProject.getId());
     }
 
-    @Test(dependsOnMethods = "addMilestone",
-            groups = "MileStone")
+    @Test(dependsOnMethods = "addMilestone")
     public void updateMilestone() {
-        testMilestone.setName("name1");
-        milestoneAdapter.update(testMilestone.getId(), testMilestone);
+        actualMilestone.setName("name1");
+        milestoneAdapter.update(actualMilestone.getId(), actualMilestone);
     }
 
-    @Test(dependsOnMethods = "addMilestone",
-            groups = "MileStone")
+    @Test(dependsOnMethods = "addMilestone")
     public void deleteMilestone() {
-        milestoneAdapter.delete(testMilestone.getId(), testMilestone);
+        milestoneAdapter.delete(actualMilestone.getId(), actualMilestone);
     }
+
 }

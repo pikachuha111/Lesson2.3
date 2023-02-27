@@ -3,6 +3,7 @@ package adapters;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
 import models.Milestone;
+import models.Project;
 import org.apache.http.HttpStatus;
 
 import utils.EndPoints;
@@ -13,15 +14,19 @@ import static org.hamcrest.Matchers.*;
 
 
 public class MilestoneAdapter {
+    protected Project actualProject;
 
-    public Milestone add(Milestone milestone) {
+
+    public Milestone add(Project actualProject, Milestone milestone) {
+        this.actualProject = actualProject;
 
         return given()
-                .pathParams("project_id", milestone.getProjectID())
+                .pathParams("project_id", actualProject.getId())
                 .body(milestone, ObjectMapperType.GSON)
                 .when()
                 .post(EndPoints.ADD_MILESTONE)
                 .then()
+                .log().body()
                 .statusCode(HttpStatus.SC_OK)
                 .body("name", equalTo(milestone.getName()))
                 .body("description", equalTo(milestone.getDescription()))

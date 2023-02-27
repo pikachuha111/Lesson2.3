@@ -1,10 +1,10 @@
 package adapters;
 
 import models.Case;
+import models.Section;
 import org.apache.http.HttpStatus;
 import utils.EndPoints;
 import io.restassured.mapper.ObjectMapperType;
-import io.restassured.response.Response;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +15,19 @@ import static io.restassured.RestAssured.*;
 
 
 public class CaseAdapter {
-    private Case caseResponse;
+
+    public Case add(Case expectedCase, Section section) {
+        return given()
+                .pathParams("section_id", section.getSectionID())
+                .body(expectedCase, ObjectMapperType.GSON)
+                .when()
+                .post(EndPoints.ADD_CASE)
+                .then()
+                .log().body()
+                .statusCode(HttpStatus.SC_OK)
+                .extract()
+                .as(Case.class, ObjectMapperType.GSON);
+    }
 
     public Case get(int caseID) {
         return given()

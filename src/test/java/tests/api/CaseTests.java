@@ -1,49 +1,58 @@
 package tests.api;
 
-import baseEntities.BaseApiGsonTest;
+import baseEntities.BaseApiTest;
 import models.Case;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class CaseTests extends BaseApiGsonTest {
+public class CaseTests extends BaseApiTest {
     protected Case caseObjectOne;
-    protected Case caseObjectTwo;
     protected Case expectedCase;
+    protected Case actualCase;
+    protected Case actualCaseTwo;
 
-    @Test(groups = "Cases")
-    public void getCases() {
+    @Test
+    public void addCase() {
         expectedCase = Case.builder()
-                .title("name1")
-                .sectionID(2)
+                .title("test_case")
+                .sectionID(actualSectionOne.getSectionID())
                 .build();
 
-        caseObjectOne = caseAdapter.get(194);
-        caseObjectTwo = caseAdapter.get(196);
-        Assert.assertEquals(expectedCase, caseObjectOne);
+        actualCase = caseAdapter.add(expectedCase, actualSectionOne);
+        actualCaseTwo = caseAdapter.add(Case.builder()
+                .title("test_case2")
+                .sectionID(actualSectionOne.getSectionID())
+                .build(), actualSectionOne);
+    }
+
+    @Test(dependsOnMethods = "addCase")
+    public void getCases() {
+
+        actualCase = caseAdapter.get(actualCase.getId());
+        Assert.assertEquals(expectedCase, actualCase);
 
     }
 
-    @Test(dependsOnMethods = "getCases", groups = "Cases")
+    @Test(dependsOnMethods = "addCase")
     public void updateCases() {
-        caseObjectOne.setTitle("name1");
-        caseAdapter.update(caseObjectOne);
+        actualCase.setTitle("name1");
+        caseAdapter.update(actualCase);
 
-        Assert.assertEquals(expectedCase, caseObjectOne);
+        Assert.assertNotEquals(expectedCase, actualCase);
     }
 
-    @Test(dependsOnMethods = "getCases", groups = "Cases")
+    @Test(dependsOnMethods = "addCase")
     public void moveCaseToSection() {
         int suiteID = 1;
-        int sectionID = 2;
-        List<Case> cases = List.of(caseObjectOne, caseObjectTwo);
-        caseAdapter.moveCases(sectionID, suiteID, cases);
+        List<Case> cases = List.of(actualCase, actualCaseTwo);
+        caseAdapter.moveCases(actualSectionToMove.getSectionID(), suiteID, cases);
     }
 
-    @Test(dependsOnMethods = "getCases", groups = "Cases")
+    @Test(dependsOnMethods = "addCase")
     public void deleteCase() {
-        caseAdapter.delete(caseObjectTwo);
+        caseAdapter.delete(actualCaseTwo);
     }
 
 }

@@ -7,14 +7,17 @@ import adapters.SectionAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import configuration.ReadProperties;
+import dbTables.CasesTable;
+import dbTables.MilestonesTable;
+import dbTables.ProjectTable;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import models.Project;
 import models.Section;
 import org.apache.http.protocol.HTTP;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeTest;
+import services.DataBaseService;
 
 import static io.restassured.RestAssured.given;
 
@@ -27,6 +30,10 @@ public class BaseApiTest {
     protected Project actualProject;
     protected Section actualSectionOne;
     protected Section actualSectionToMove;
+    protected DataBaseService dbService;
+    protected ProjectTable projectTable;
+    protected CasesTable casesTable;
+    protected MilestonesTable milestonesTable;
 
 
     @BeforeTest
@@ -54,11 +61,28 @@ public class BaseApiTest {
 
         milestoneAdapter = new MilestoneAdapter();
 
+        dbService = new DataBaseService();
+
+        projectTable = new ProjectTable(dbService);
+        projectTable.createTable();
+
+        casesTable = new CasesTable(dbService);
+        casesTable.createTable();
+
+        milestonesTable = new MilestonesTable(dbService);
+        milestonesTable.createTable();
+
     }
 
 
     @AfterTest
     public void tearDown() {
         projectAdapter.delete();
+        projectTable.dropTable();
+        casesTable.dropTable();
+        milestonesTable.dropTable();
+        dbService.closeConnection();
     }
+
+
 }

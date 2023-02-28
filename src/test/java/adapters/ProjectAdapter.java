@@ -20,7 +20,7 @@ public class ProjectAdapter {
                 .suiteMode(1)
                 .build();
 
-       return actualProject = given()
+        return actualProject = given()
                 .body(expectedProject, ObjectMapperType.GSON)
                 .when()
                 .post(EndPoints.ADD_PROJECT)
@@ -40,6 +40,6 @@ public class ProjectAdapter {
                 .then()
                 .statusCode(HttpStatus.SC_OK);
 
-        logger.info("Project has been deleted ... ");
+        logger.info("Project has been deleted from Test Rail ... ");
     }
 }

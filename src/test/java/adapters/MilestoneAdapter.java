@@ -49,7 +49,7 @@ public class MilestoneAdapter {
     }
 
     public void getMilestones(int projectID) {
-         given()
+        given()
                 .pathParams("project_id", projectID)
                 .when()
                 .get(EndPoints.GET_MILESTONES)
@@ -74,7 +74,7 @@ public class MilestoneAdapter {
     }
 
     public void delete(int milestoneID, Milestone milestone) {
-        Response response =given()
+        Response response = given()
                 .pathParams("milestone_id", milestoneID)
                 .body(milestone, ObjectMapperType.GSON)
                 .when()

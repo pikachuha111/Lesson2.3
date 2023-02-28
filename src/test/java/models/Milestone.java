@@ -1,6 +1,7 @@
 package models;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import lombok.*;
 
 @Builder
@@ -13,6 +14,7 @@ public class Milestone {
     private String name;
 
     @Expose
+    @SerializedName("project_id")
     private int projectID;
 
     @Expose
